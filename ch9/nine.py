@@ -67,18 +67,37 @@ def avoids_list():
   counter = 0
   counter_total = 0
   fin = open('words2.txt')
-  str = raw_input('enter the forbidden letters:\n> ') 
+
+  #str is the builtin str() function that will attempt to change the input 
+  #into a string! You should probably name your variable something else ;)
+ 
+  #str = raw_input('enter the forbidden letters:\n> ') 
+  forbiddens = raw_input('enter the forbidden letters:\n> ')
+  
   for line in fin:
-    counter_total = counter_total + 1
+
+    #counter_total = counter_total + 1
+    #You can increment your integers like this
+
+    counter_total += 1    
+  
     word = line.strip()
     for char in str:
       if char in word:
         print char
         print word
-        counter = counter + 1    
+        #counter = counter + 1    
+        counter += 1
+
 #*********************************************************************
 #once counter increments, move on to the next word. HOW TO DO!!!
+
+#I think what you are looking for is the continue keyword, it will stop at that point in the loop and start the
+# next iteration. Check out the example in this link. 
+#http://docs.python.org/2/tutorial/controlflow.html#break-and-continue-statements-and-else-clauses-on-loops
+
 #**********************
+
         print counter
   return counter_total - counter 
   
@@ -86,12 +105,24 @@ def avoids_list():
 
 #-------------------------------------------------------------
 #ex. 9.4
-# get word, str. return True is word uses only letters in str
-def uses_only(word, str):
-  for char in str:
-    if char in word != char in str:
+
+#Also shouldn't use str here! 
+
+# get word, str. return True if word uses only letters in allowed_letters
+def uses_only(word, allowed_letters):
+
+  #Go through each letter in the word
+  for char in word:
+
+    #Check if the letter exists in the allowed_letters string
+    if char not in allowed_letters:
+
+      #If letter doesn't exist in the allowed, return False 
       return False
+
+  #Else, eventually after going through all the letters return True 
   return True
+
 #**********************************************************************    
 #print uses_only('a barb', 'bar'), 'uses-only'
 
@@ -114,6 +145,9 @@ def uses_all(word, str):
 #-------------------------------------------------------------
 #ex. 9.7
 # find a word that has 3 consequtive doubble letters
+
+#Let me know if I can help you with this one! -Daniel 
+
 def threeDoubles(file):
   fin = open(file)
   for line in fin:
@@ -123,10 +157,12 @@ def threeDoubles(file):
       while i < len(word):
         counter = 0
         letter1 = word[i]
-        i = i+ 1
+        #i = i+ 1
+        i += 1
         letter2 = word[i]
         if letter1 == letter2:
-          counter = counter + 1
+          #counter = counter + 1
+          counter += 1
           if counter == 3:
             print word
         
